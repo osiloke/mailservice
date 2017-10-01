@@ -31,7 +31,7 @@ func (l *XILogger) Print(args ...interface{}) {
 	if n, ok := names[name]; ok {
 		name = n
 	}
-	logxi.Debug(name, args[1:]...)
+	logxi.Debug(name)
 
 }
 func (l *XILogger) Printf(s string, args ...interface{}) {
@@ -40,7 +40,7 @@ func (l *XILogger) Printf(s string, args ...interface{}) {
 		if n, ok := names[name]; ok {
 			name = n
 		}
-		logxi.Debug(name, args[1:]...)
+		logxi.Debug(name) //, args[1:]...)
 	} else {
 		taskName := strings.Split(s, ":")[0]
 		name := taskName
@@ -64,16 +64,16 @@ func (l *XILogger) Println(args ...interface{}) {
 
 func (l *XILogger) Fatal(args ...interface{}) {
 	name := fmt.Sprintf("%s", args[0])
-	logxi.Error(name, args[1:]...)
+	logxi.Warn(name, args[1:]...)
 }
 
 func (l *XILogger) Fatalf(s string, args ...interface{}) {
-	logxi.Error(fmt.Sprintf(s, args))
+	logxi.Warn("F", "fatal", fmt.Sprintf(s, args))
 
 }
 func (l *XILogger) Fatalln(args ...interface{}) {
 	name := fmt.Sprintf("%s", args[0])
-	logxi.Error(name, args[1:]...)
+	logxi.Warn(name, args[1:]...)
 }
 
 func (l *XILogger) Panic(args ...interface{}) {
@@ -81,7 +81,7 @@ func (l *XILogger) Panic(args ...interface{}) {
 
 }
 func (l *XILogger) Panicf(s string, args ...interface{}) {
-	logxi.Warn(fmt.Sprintf(s, args))
+	logxi.Warn("P", "panic", fmt.Sprintf(s, args))
 }
 func (l *XILogger) Panicln(args ...interface{}) {
 	name := fmt.Sprintf("%s", args[0])
