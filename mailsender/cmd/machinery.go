@@ -18,7 +18,7 @@ import (
 
 	"github.com/RichardKnop/machinery/v1"
 	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/osiloke/mailservice/mailsender/mailer"
+	"github.com/osiloke/mailservice/mailer"
 	"github.com/spf13/cobra"
 )
 
