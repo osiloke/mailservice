@@ -14,6 +14,7 @@
 package cmd
 
 import (
+	"os"
 	"strings"
 
 	"github.com/RichardKnop/machinery/v1"
@@ -25,6 +26,14 @@ import (
 var redisURI string
 var name string
 var defaultQueue string
+
+func getenv(key, fallback string) string {
+	value := os.Getenv(key)
+	if len(value) == 0 {
+		return fallback
+	}
+	return value
+}
 
 // machineryCmd represents the machinery command
 var machineryCmd = &cobra.Command{
@@ -61,7 +70,7 @@ var machineryCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(machineryCmd)
-	machineryCmd.Flags().StringVarP(&name, "name", "n", "mailer", "unique name of this worker")
-	machineryCmd.Flags().StringVarP(&defaultQueue, "queue", "q", "machinery_tasks", "queue for worker tasks")
-	machineryCmd.Flags().StringVarP(&redisURI, "redis", "r", "redis://localhost:6379", "redis uri")
+	machineryCmd.Flags().StringVarP(&name, "name", "n", getenv("NAME", "mailer"), "unique name of this worker")
+	machineryCmd.Flags().StringVarP(&defaultQueue, "queue", "q", getenv("QUEUE", "machinery_tasks"), "queue for worker tasks")
+	machineryCmd.Flags().StringVarP(&redisURI, "redis", "r", getenv("REDIS_URI", "redis://localhost:6379"), "redis uri")
 }
