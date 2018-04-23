@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/RichardKnop/machinery/v1/log"
+	// "github.com/RichardKnop/machinery/v1/log"
 	logxi "github.com/mgutz/logxi/v1"
 )
 
@@ -13,7 +13,7 @@ type XILogger struct {
 }
 
 func init() {
-	log.Set(&XILogger{})
+	// log.Set(&XILogger{})
 }
 
 // import (
