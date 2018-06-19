@@ -1,6 +1,5 @@
 vendor
 # Binaries for programs and plugins
-mailsender
 *.exe
 *.exe~
 *.dll
